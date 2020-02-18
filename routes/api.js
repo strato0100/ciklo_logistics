@@ -45,8 +45,18 @@ router.get('/trucks', function(req, res, next) {
   })
 });
 
-router.get('/:id', function(req, res, next) {
-  res.send('respond with a resource ' + req.params.id );
+router.post('/login', function(req, res, next) {
+  let authCheck = req.body.username == 'strato0100@gmail.com' && req.body.password == '123';
+  if (authCheck) {
+    res.send({
+      success: true,
+      data: '_user'
+    });
+  } else {
+    res.send({
+      success: false
+    });
+  }
 });
 
 module.exports = router;

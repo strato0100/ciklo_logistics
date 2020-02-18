@@ -90,7 +90,7 @@ export class SecurityComponent implements OnInit {
     }
   }
 
-  toggle(toggle_target) {
+  toggle(toggle_target: any) {
     $(toggle_target).slideToggle('fast');
   }
 
@@ -98,5 +98,11 @@ export class SecurityComponent implements OnInit {
     var userModal = new UserModalComponent();
     console.log(userModal);
     //$(userModal).modal('show');
+  }
+
+  delete_user(user: any) {
+    alertify.confirm('Confirm Title', 'Confirm Message', function(){ alertify.success('Ok') }
+                , function(){ alertify.error('Cancel')});
+    console.log(user);
   }
 }
