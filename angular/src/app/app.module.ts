@@ -11,9 +11,10 @@ import { UsersComponentComponent } from './users-component/users-component.compo
 import { DriversComponentComponent } from './drivers-component/drivers-component.component';
 import { TrucksComponentComponent } from './trucks-component/trucks-component.component';
 import { AssignationComponent } from './assignation/assignation.component';
-import { TruckAssignationComponentComponent } from './truck-assignation-component/truck-assignation-component.component';
 import { DriverModalComponent } from './driver-modal/driver-modal.component';
 import { TruckModalComponent } from './truck-modal/truck-modal.component';
+import { ShippingsComponentComponent } from './shippings-component/shippings-component.component';
+import { ShippingModalComponent } from './shipping-modal/shipping-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,10 @@ import { TruckModalComponent } from './truck-modal/truck-modal.component';
     DriversComponentComponent,
     TrucksComponentComponent,
     AssignationComponent,
-    TruckAssignationComponentComponent,
     DriverModalComponent,
-    TruckModalComponent
+    TruckModalComponent,
+    ShippingsComponentComponent,
+    ShippingModalComponent
   ],
   imports: [
     BrowserModule,

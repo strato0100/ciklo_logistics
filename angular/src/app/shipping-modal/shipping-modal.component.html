@@ -1,0 +1,31 @@
+<div class="ui shipping modal">
+    <i class="close icon"></i>
+    <div class="header">Shipping</div>
+    <div class="content">
+        <div class="ui form">
+            <div class="field">
+                <label>Source</label>
+                <input type="text" name="source" placeholder="Source">
+            </div>
+            <div class="field">
+                <label>Target</label>
+                <input type="text" name="target" placeholder="Target">
+            </div>
+            <div class="field">
+                <label>Assigned truck</label>
+                <div class="ui truck selection dropdown">
+                    <input type="hidden" name="truck">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Truck</div>
+                    <div class="menu">
+                    </div>
+                </div>
+            </div>
+            <div class="ui error message"></div>
+        </div>
+    </div>
+    <div class="actions">
+      <div class="ui green approve button">Ok</div>
+      <div class="ui red cancel button">Cancel</div>
+    </div>
+  </div>

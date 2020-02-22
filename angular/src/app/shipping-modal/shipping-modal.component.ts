@@ -3,34 +3,35 @@ declare var jQuery: any;
 import alertify from 'alertifyjs';
 
 @Component({
-  selector: 'app-truck-modal',
-  templateUrl: './truck-modal.component.html',
-  styleUrls: ['./truck-modal.component.css']
+  selector: 'app-shipping-modal',
+  templateUrl: './shipping-modal.component.html',
+  styleUrls: ['./shipping-modal.component.css']
 })
-export class TruckModalComponent implements OnInit {
+export class ShippingModalComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  show(truck: any): void {
-    let _form = jQuery('.truck .form').form({
+  show(shipping: any): void {
+    let _form = jQuery('.shipping .form').form({
       fields: {
-        name: [ 'empty' ],
-        driver: [ 'empty' ]
+        source: [ 'empty' ],
+        target: [ 'empty' ],
+        truck: [ 'empty' ],
       },
       onSuccess: function(event, fields) {
-        if (truck) fields.truck_id = truck.truck_id;
+        if (shipping) fields.shipping_id = shipping.shipping_id;
         jQuery.ajax({
-          url: '/api/truck/save',
+          url: '/api/shipping/save',
           method: 'POST',
           data: fields
         }).done(function(r) {
           if (!r.success) alertify.error(r.error);
           else {
-            if (truck) alertify.success('Truck updated');
-            else alertify.success('Truck created');
+            if (shipping) alertify.success('Shipping updated');
+            else alertify.success('Shipping created');
           }
         }).fail(function(data) {
           _form.form('add errors', [ data ])
@@ -42,27 +43,27 @@ export class TruckModalComponent implements OnInit {
       }
     })
 
-    if (truck) {
-      _form.form('set values', truck );
+    if (shipping) {
+      _form.form('set values', shipping );
     }
 
-    jQuery('.truck.modal').modal({
+    jQuery('.shipping.modal').modal({
       onApprove: function() {
         _form.form('validate form');
         return _form.form('is valid');
       },
       onShow: function() {
         jQuery.ajax({
-          url: '/api/drivers',
+          url: '/api/trucks',
           method: 'GET',
           data: { }
         }).done(function(r) {
           if (!r.success) alertify.error(r.error);
           else {
-            let _drivers = r.data.map(d => {
-              return { value: d.driver_id, name: d.name };
+            let _trucks = r.data.map(t => {
+              return { value: t.truck_id, name: t.name };
             });
-            jQuery('.driver.selection.dropdown').dropdown('setup menu', { values: _drivers })
+            jQuery('.truck.selection.dropdown').dropdown('setup menu', { values: _trucks })
           }
         }).fail(function(data) {
           console.error(data);

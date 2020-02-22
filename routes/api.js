@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+var mongoose = require('mongoose');
+mongoose.connect("mongodb://ciklo:cicklo1.@cluster0-1lwfr.mongodb.net/test?retryWrites=true&w=majority"), {
+  useMongoClient: true
+};
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -45,6 +50,19 @@ router.get('/trucks', function(req, res, next) {
   })
 });
 
+/* GET shipping listing. */
+router.get('/shippings', function(req, res, next) {
+  res.send({
+    success: true,
+    data: [
+      { shipping_id: 1, source: 'Source1', target: 'Target1' },
+      { shipping_id: 2, source: 'Source2', target: 'Target2' },
+      { shipping_id: 3, source: 'Source3', target: 'Target3' },
+      { shipping_id: 4, source: 'Source4', target: 'Target4' },
+    ]
+  })
+});
+
 router.post('/login', function(req, res, next) {
   let authCheck = req.body.username == 'strato0100@gmail.com' && req.body.password == '123';
   if (authCheck) {
@@ -77,6 +95,14 @@ router.post('/driver/save', function(req, res, next) {
 
 /* Save truck */
 router.post('/truck/save', function(req, res, next) {
+  res.send({
+    success: true,
+    data: { }
+  })
+});
+
+/* Save shipping */
+router.post('/shipping/save', function(req, res, next) {
   res.send({
     success: true,
     data: { }
