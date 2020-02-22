@@ -3,35 +3,34 @@ declare var jQuery: any;
 import alertify from 'alertifyjs';
 
 @Component({
-  selector: 'app-user-modal',
-  templateUrl: './user-modal.component.html',
-  styleUrls: ['./user-modal.component.css']
+  selector: 'app-truck-modal',
+  templateUrl: './truck-modal.component.html',
+  styleUrls: ['./truck-modal.component.css']
 })
-export class UserModalComponent implements OnInit {
+export class TruckModalComponent implements OnInit {
 
-  // user: { };
-
-  constructor() {  }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   show(user: any): void {
-    let _form = jQuery('.user .form').form({
+    let _form = jQuery('.truck .form').form({
       fields: {
-        username: [ 'empty' ]
+        name: [ 'empty' ],
+        driver: [ 'empty' ]
       },
       onSuccess: function(event, fields) {
         if (user) fields.user_id = user.user_id;
         jQuery.ajax({
-          url: '/api/user/save',
+          url: '/api/truck/save',
           method: 'POST',
           data: fields
         }).done(function(r) {
           if (!r.success) alertify.error(r.error);
           else {
-            if (user) alertify.success('User updated');
-            else alertify.success('User created');
+            if (user) alertify.success('Truck updated');
+            else alertify.success('Truck created');
           }
         }).fail(function(data) {
           _form.form('add errors', [ data ])
@@ -47,7 +46,7 @@ export class UserModalComponent implements OnInit {
       _form.form('set values', user );
     }
 
-    jQuery('.user.modal').modal({
+    jQuery('.truck.modal').modal({
       onApprove: function() {
         _form.form('validate form');
         return _form.form('is valid');

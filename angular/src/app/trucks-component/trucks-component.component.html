@@ -1,0 +1,37 @@
+<div class="ui vertical module segment">
+    <div class="ui top attached menu">
+        <div class="ui item">
+            <i class="truck icon"></i> Trucks
+        </div>
+        <div class="right menu">
+            <div class="ui dropdown icon item" (click)="toggle(toggle_target)">
+                <i class="compress icon"></i>
+            </div>
+            <div class="ui dropdown icon item" (click)="add()">
+                <i class="plus icon"></i>
+            </div>
+            <div class="ui right aligned category search item">
+                <div class="ui transparent icon input">
+                    <input class="prompt" type="text" (keyup)="onFilter($event)" placeholder="Search">
+                    <i class="search link icon"></i>
+                </div>
+                <div class="results"></div>
+            </div>
+        </div>
+    </div>
+    <div class="ui bottom attached segment" #toggle_target>
+        <div class="ui middle aligned divided very relaxed quotation selection list">                
+            <div class="item" *ngFor="let truck of trucks; index as i; first as isFirst" (click)="show(truck)">
+                <img class="ui avatar image" src="/assets/truck.png">
+                <div class="content">
+                    <a class="header">{{truck.name}}</a>
+                    <div class="description"></div>
+                </div>
+                <div class="ui right floated red mini icon labeled button" (click)="remove(truck, i, $event)">
+                    <i class="trash icon"></i> Delete
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-truck-modal></app-truck-modal>

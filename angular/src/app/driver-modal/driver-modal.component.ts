@@ -3,35 +3,33 @@ declare var jQuery: any;
 import alertify from 'alertifyjs';
 
 @Component({
-  selector: 'app-user-modal',
-  templateUrl: './user-modal.component.html',
-  styleUrls: ['./user-modal.component.css']
+  selector: 'app-driver-modal',
+  templateUrl: './driver-modal.component.html',
+  styleUrls: ['./driver-modal.component.css']
 })
-export class UserModalComponent implements OnInit {
+export class DriverModalComponent implements OnInit {
 
-  // user: { };
-
-  constructor() {  }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  show(user: any): void {
-    let _form = jQuery('.user .form').form({
+  show(driver: any): void {
+    let _form = jQuery('.driver .form').form({
       fields: {
-        username: [ 'empty' ]
+        name: [ 'empty' ]
       },
       onSuccess: function(event, fields) {
-        if (user) fields.user_id = user.user_id;
+        if (driver) fields.driver_id = driver.driver_id;
         jQuery.ajax({
-          url: '/api/user/save',
+          url: '/api/driver/save',
           method: 'POST',
           data: fields
         }).done(function(r) {
           if (!r.success) alertify.error(r.error);
           else {
-            if (user) alertify.success('User updated');
-            else alertify.success('User created');
+            if (driver) alertify.success('Driver updated');
+            else alertify.success('Driver created');
           }
         }).fail(function(data) {
           _form.form('add errors', [ data ])
@@ -43,14 +41,13 @@ export class UserModalComponent implements OnInit {
       }
     })
 
-    if (user) {
-      _form.form('set values', user );
+    if (driver) {
+      _form.form('set values', driver );
     }
 
-    jQuery('.user.modal').modal({
+    jQuery('.driver.modal').modal({
       onApprove: function() {
-        _form.form('validate form');
-        return _form.form('is valid');
+        return _form.form('validate form');
       }
     }).modal('show');
   }

@@ -11,10 +11,10 @@ router.get('/users', function(req, res, next) {
   res.send({
     success: true,
     data: [
-      { username: 'User1' },
-      { username: 'User2' },
-      { username: 'User3' },
-      { username: 'User4' },
+      { user_id:1, username: 'User1' },
+      { user_id:2, username: 'User2' },
+      { user_id:3, username: 'User3' },
+      { user_id:4, username: 'User4' },
     ]
   })
 });
@@ -24,10 +24,10 @@ router.get('/drivers', function(req, res, next) {
   res.send({
     success: true,
     data: [
-      { name: 'Driver1' },
-      { name: 'Driver2' },
-      { name: 'Driver3' },
-      { name: 'Driver4' },
+      { driver_id: 1, name: 'Driver1' },
+      { driver_id: 2, name: 'Driver2' },
+      { driver_id: 3, name: 'Driver3' },
+      { driver_id: 4, name: 'Driver4' },
     ]
   })
 });
@@ -37,10 +37,10 @@ router.get('/trucks', function(req, res, next) {
   res.send({
     success: true,
     data: [
-      { name: 'Truck1' },
-      { name: 'Truck2' },
-      { name: 'Truck3' },
-      { name: 'Truck4' },
+      { truck_id: 1, name: 'Truck1' },
+      { truck_id: 2, name: 'Truck2' },
+      { truck_id: 3, name: 'Truck3' },
+      { truck_id: 4, name: 'Truck4' },
     ]
   })
 });
@@ -57,6 +57,30 @@ router.post('/login', function(req, res, next) {
       success: false
     });
   }
+});
+
+/* Save user */
+router.post('/user/save', function(req, res, next) {
+  res.send({
+    success: true,
+    data: { }
+  })
+});
+
+/* Save driver */
+router.post('/driver/save', function(req, res, next) {
+  res.send({
+    success: true,
+    data: { }
+  })
+});
+
+/* Save truck */
+router.post('/truck/save', function(req, res, next) {
+  res.send({
+    success: true,
+    data: { }
+  })
 });
 
 module.exports = router;

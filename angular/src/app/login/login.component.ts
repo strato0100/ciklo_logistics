@@ -12,14 +12,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     jQuery(document).ready(function(){
-      jQuery('.login.form').form({
+      let _form = jQuery('.login.form').form({
         fields: {
           email: [ 'empty', 'email' ],
           password: [ 'empty' ]
         },
         onSuccess: function(event, fields) {
           event.preventDefault();
-          console.log(fields);
           jQuery.ajax({
             url: '/api/login',
             method: 'POST',
@@ -28,7 +27,8 @@ export class LoginComponent implements OnInit {
               password: fields.password,
             }
           }).done(function(data) {
-            console.log(data);
+            if (!data.success) _form.form('add errors', [ 'Invalid authentication' ]);
+            else location.href = '/security';
           }).fail(function(data) {
             console.error(data);
           });
