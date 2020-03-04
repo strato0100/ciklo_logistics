@@ -14,7 +14,7 @@ export class DriverModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  show(driver: any): void {
+  show(driver: any, drivers: any, index: any): void {
     let _form = jQuery('.driver .form').form({
       fields: {
         name: [ 'empty' ]
@@ -28,8 +28,13 @@ export class DriverModalComponent implements OnInit {
         }).done(function(r) {
           if (!r.success) alertify.error(r.error);
           else {
-            if (driver) alertify.success('Driver updated');
-            else alertify.success('Driver created');
+            if (driver) {
+              alertify.success('Driver updated');
+              drivers.splice(index, 1, r.data);
+            } else {
+              alertify.success('Driver created');
+              drivers.push(r.data);
+            }
           }
         }).fail(function(data) {
           _form.form('add errors', [ data ])

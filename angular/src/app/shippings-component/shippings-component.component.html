@@ -21,11 +21,11 @@
     </div>
     <div class="ui bottom attached segment" #toggle_target>
         <div class="ui middle aligned divided very relaxed quotation selection list">                
-            <div class="item" *ngFor="let shipping of shippings; index as i; first as isFirst" (click)="show(shipping)">
+            <div class="item" *ngFor="let shipping of shippings; index as i; first as isFirst" (click)="show(shipping, index)">
                 <img class="ui avatar image" src="/assets/shipping.png">
                 <div class="content">
-                    <a class="header">{{shipping.source}} <i class="angle double right icon"></i> {{shipping.target}}</a>
-                    <div class="description"></div>
+                    <a class="header">{{shipping.name}}</a>
+                    <div class="description">From {{shipping.source}} to {{shipping.target}}</div>
                 </div>
                 <div class="ui right floated red mini icon labeled button" (click)="remove(shipping, i, $event)">
                     <i class="trash icon"></i> Delete

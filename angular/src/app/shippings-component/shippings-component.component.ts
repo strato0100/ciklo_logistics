@@ -37,7 +37,7 @@ export class ShippingsComponentComponent implements OnInit {
     this.filter = event.target.value;
     if (this.filter == '') this.shippings = this.allShippings;
     else {
-      this.shippings = this.allShippings.filter(n => n.source.toUpperCase().includes(this.filter.toUpperCase()) || n.target.toUpperCase().includes(this.filter.toUpperCase()));
+      this.shippings = this.allShippings.filter(n => n.name.toUpperCase().includes(this.filter.toUpperCase()) || n.source.toUpperCase().includes(this.filter.toUpperCase()) || n.target.toUpperCase().includes(this.filter.toUpperCase()));
     }
   }
 
@@ -46,11 +46,11 @@ export class ShippingsComponentComponent implements OnInit {
   }
 
   add() {
-    new ShippingModalComponent().show(null);
+    new ShippingModalComponent().show(null, this.shippings, null);
   }
 
-  show(user: any) {
-    new ShippingModalComponent().show(user);
+  show(user: any, index: any) {
+    new ShippingModalComponent().show(user, this.shippings, index);
   }
 
   remove(user: any, index: any, event: any) {

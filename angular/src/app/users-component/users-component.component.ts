@@ -46,11 +46,11 @@ export class UsersComponentComponent implements OnInit {
   }
 
   add() {
-    new UserModalComponent().show(null);
+    new UserModalComponent().show(null, this.users, null);
   }
 
-  show(user: any) {
-    new UserModalComponent().show(user);
+  show(user: any, index: any) {
+    new UserModalComponent().show(user, this.users, index);
   }
 
   remove(user: any, index: any, event: any) {

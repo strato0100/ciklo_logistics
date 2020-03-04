@@ -47,11 +47,11 @@ export class TrucksComponentComponent implements OnInit {
   }
 
   add() {
-    new TruckModalComponent().show(null);
+    new TruckModalComponent().show(null, this.trucks, null);
   }
 
-  show(user: any) {
-    new TruckModalComponent().show(user);
+  show(user: any, index: any) {
+    new TruckModalComponent().show(user, this.trucks, index);
   }
 
   remove(user: any, index: any, event: any) {

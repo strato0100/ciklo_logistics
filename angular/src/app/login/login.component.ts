@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
               password: fields.password,
             }
           }).done(function(data) {
-            if (!data.success) _form.form('add errors', [ 'Invalid authentication' ]);
+            if (!data.success) _form.form('add errors', [ data.error ]);
+            else if (!data.data) _form.form('add errors', [ 'Invalid authentication' ]); 
             else location.href = '/shipping';
           }).fail(function(data) {
             console.error(data);

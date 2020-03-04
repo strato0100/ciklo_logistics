@@ -46,11 +46,11 @@ export class DriversComponentComponent implements OnInit {
   }
 
   add() {
-    new DriverModalComponent().show(null);
+    new DriverModalComponent().show(null, this.drivers, null);
   }
 
-  show(driver: any) {
-    new DriverModalComponent().show(driver);
+  show(driver: any, index: any) {
+    new DriverModalComponent().show(driver, this.drivers, index);
   }
 
   remove(driver: any, index: any, event: any) {

@@ -16,7 +16,7 @@ export class UserModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  show(user: any): void {
+  show(user: any, users: any, index: any): void {
     let _form = jQuery('.user .form').form({
       fields: {
         username: [ 'empty' ]
@@ -30,8 +30,13 @@ export class UserModalComponent implements OnInit {
         }).done(function(r) {
           if (!r.success) alertify.error(r.error);
           else {
-            if (user) alertify.success('User updated');
-            else alertify.success('User created');
+            if (user) {
+              alertify.success('User updated');
+              users.splice(index, 1, r.data);
+            } else {
+              alertify.success('User created');
+              users.push(r.data);
+            }
           }
         }).fail(function(data) {
           _form.form('add errors', [ data ])

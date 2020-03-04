@@ -14,7 +14,7 @@ export class TruckModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  show(truck: any): void {
+  show(truck: any, trucks: any, index: any): void {
     let _form = jQuery('.truck .form').form({
       fields: {
         name: [ 'empty' ],
@@ -29,8 +29,13 @@ export class TruckModalComponent implements OnInit {
         }).done(function(r) {
           if (!r.success) alertify.error(r.error);
           else {
-            if (truck) alertify.success('Truck updated');
-            else alertify.success('Truck created');
+            if (truck) {
+              alertify.success('Truck updated');
+              trucks.splice(index, 1, r.data);
+            } else {
+              alertify.success('Truck created');
+              trucks.push(r.data);
+            }
           }
         }).fail(function(data) {
           _form.form('add errors', [ data ])

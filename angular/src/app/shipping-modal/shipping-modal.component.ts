@@ -14,9 +14,10 @@ export class ShippingModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  show(shipping: any): void {
+  show(shipping: any, shippings: any, index: any): void {
     let _form = jQuery('.shipping .form').form({
       fields: {
+        name: [ 'empty' ],
         source: [ 'empty' ],
         target: [ 'empty' ],
         truck: [ 'empty' ],
@@ -30,8 +31,13 @@ export class ShippingModalComponent implements OnInit {
         }).done(function(r) {
           if (!r.success) alertify.error(r.error);
           else {
-            if (shipping) alertify.success('Shipping updated');
-            else alertify.success('Shipping created');
+            if (shipping) {
+              alertify.success('Shipping updated');
+              shippings.splice(index, 1, r.data);
+            } else {
+              alertify.success('Shipping created');
+              shippings.push(r.data);
+            }
           }
         }).fail(function(data) {
           _form.form('add errors', [ data ])
