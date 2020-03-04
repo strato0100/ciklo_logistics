@@ -21,7 +21,7 @@
     </div>
     <div class="ui bottom attached segment" #toggle_target>
         <div class="ui middle aligned divided very relaxed quotation selection list">                
-            <div class="item" *ngFor="let driver of drivers; index as i; first as isFirst" (click)="show(driver)">
+            <div class="item" *ngFor="let driver of drivers; index as i; first as isFirst" (click)="show(driver, i)">
                 <img class="ui avatar image" src="/assets/driver.png">
                 <div class="content">
                     <a class="header">{{driver.name}}</a>

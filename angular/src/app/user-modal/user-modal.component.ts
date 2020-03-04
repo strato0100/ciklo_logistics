@@ -19,7 +19,7 @@ export class UserModalComponent implements OnInit {
   show(user: any, users: any, index: any): void {
     let _form = jQuery('.user .form').form({
       fields: {
-        username: [ 'empty' ]
+        username: [ 'empty', 'email' ]
       },
       onSuccess: function(event, fields) {
         if (user) fields.user_id = user.user_id;

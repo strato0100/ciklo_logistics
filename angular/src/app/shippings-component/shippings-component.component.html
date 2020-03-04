@@ -21,7 +21,7 @@
     </div>
     <div class="ui bottom attached segment" #toggle_target>
         <div class="ui middle aligned divided very relaxed quotation selection list">                
-            <div class="item" *ngFor="let shipping of shippings; index as i; first as isFirst" (click)="show(shipping, index)">
+            <div class="item" *ngFor="let shipping of shippings; index as i; first as isFirst" (click)="show(shipping, i)">
                 <img class="ui avatar image" src="/assets/shipping.png">
                 <div class="content">
                     <a class="header">{{shipping.name}}</a>
